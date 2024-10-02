@@ -52,7 +52,8 @@ class LoginSerializer(serializers.Serializer):
     def validate(self, data):
         user = authenticate(**data)
         if user:
-            token = Token.objects.get(data) # 토큰에서 유저를 찾은 후 반환
+            token = Token.objects.get(user=user) # 토큰에서 유저필드를 찾은 후 반환
+            # 딕셔너리로 전달되면 오류가 발생한다.
             return token
         # 아닐 경우
         raise serializers.ValidationError(
