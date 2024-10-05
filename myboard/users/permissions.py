@@ -6,5 +6,5 @@ class CustomReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             # 데이터에 영향을 미치지않는 메소드라면 true로 반환시킨다.
             return True
-        # 객체의 유저와 들어온(request) 유저와 같은지 비교시킨 후 통과시킨다.
+        # 객체에 대한 작업을 요청한 사용자가 객체의 소유자일 경우에만 허용
         return obj.user == request.user
