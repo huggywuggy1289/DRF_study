@@ -16,3 +16,15 @@ class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ("title", "category", "body", "image")
+
+class CommentSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer(read_only = True)
+
+    class Meta: 
+        model = Comment
+        fields = ("pk", "profile", "post", "text")
+
+class CommentCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ("post", "text")

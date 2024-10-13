@@ -119,9 +119,15 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.TokenAuthentication',
     ],
+    # ?로 시작해 &로 구분되는 쿼리를 URL에 자동으로 넣어져 필터링시켜줌
     'DEFAULT_FILTER_BACKENDS':[
         'django_filters.rest_framework.DjangoFilterBackend',
     ],
+    # 페이징 기능: 게시글 전체 데이터를 한번에 가져오기 부담스러울때 데이터수를 제한
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+        'PAGE_SIZE':
+        3,
 }
 
 LANGUAGE_CODE = 'en-us'
